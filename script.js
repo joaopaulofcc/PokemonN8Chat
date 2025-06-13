@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 i18n: {
                     en: {
                         title: 'PokédexBot Unilavras',
-                        subtitle: "Fale com nossa IA e capture Pokémon!",
-                        inputPlaceholder: 'Digite o nome de um Pokémon...',
+                        subtitle: "Fale com nossa IA e capture um Pokémon!",
+                        inputPlaceholder: 'Vamos conversar!',
                     },
                 },
             });

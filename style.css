@@ -9,18 +9,12 @@
     --danger-red: #E74C3C;
 }
 
-/* ============================================================================
-  ==  CORREÇÃO DE CAMADA (Z-INDEX) E TEMA                                   ==
-  ============================================================================
-  Movemos as variáveis do tema para cá e definimos um z-index para o contêiner
-  do chat, garantindo que ele fique ABAIXO do botão de encerrar.
-*/
 #n8n-chat-container {
     width: 100%;
     height: 100%;
     position: absolute;
     inset: 0;
-    z-index: 990; /* <--- VALOR MENOR QUE O Z-INDEX DO BOTÃO (1000) */
+    z-index: 990;
 
     /* --- 🎨 TEMA CUSTOMIZADO PARA O CHAT N8N --- */
     --chat--color-primary: var(--unilavras-cyan);
@@ -130,7 +124,7 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
-    z-index: 1000; /* <--- Z-INDEX MAIS ALTO */
+    z-index: 1000;
     background-color: var(--danger-red);
     color: white;
     border: none;
@@ -282,4 +276,74 @@ body {
 @keyframes float-up {
     0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
     100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; border-radius: 50%; }
+}
+
+
+/* ============================================================================
+  ==  RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS (CELULARES E TABLETS)       ==
+  ============================================================================
+  As regras abaixo só se aplicam em telas com largura máxima de 768px.
+*/
+@media (max-width: 768px) {
+
+    /* Ajustes nos temas do Chat */
+    #n8n-chat-container {
+        --chat--spacing: 0.8rem;
+        --chat--header--padding: 0.8rem 1rem;
+        --chat--message--font-size: 0.95rem;
+    }
+    
+    .unilavras-logo {
+        max-width: 220px; /* Logo menor */
+    }
+
+    /* Títulos e textos menores na tela de boas-vindas */
+    .welcome-container h1 {
+        font-size: 2.5em; /* Título principal bem menor */
+    }
+
+    .welcome-container p {
+        font-size: 1em; /* Parágrafo menor */
+        max-width: 90%;
+    }
+
+    .start-chat-button {
+        font-size: 1.2em; /* Botão de início menor */
+        padding: 12px 30px;
+    }
+    
+    /* Títulos e textos menores na tela de agradecimento */
+    .thank-you-container h2 {
+        font-size: 2em;
+    }
+
+    .thank-you-container p {
+        font-size: 1em;
+    }
+
+    .thank-you-container h3 {
+        font-size: 1.3em;
+    }
+    
+    .tech-list {
+        gap: 15px; /* Espaço menor entre os itens de tecnologia */
+    }
+
+    .tech-list li {
+        font-size: 1em;
+        gap: 8px;
+        padding: 8px 15px;
+    }
+
+    .tech-list i {
+        font-size: 1.5em;
+    }
+
+    /* Botão de encerrar sessão um pouco menor e mais próximo da borda */
+    .end-session-button {
+        top: 10px;
+        right: 10px;
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
 }
