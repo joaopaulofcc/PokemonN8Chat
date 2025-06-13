@@ -1,0 +1,285 @@
+/* --- ESTILOS GERAIS E FONTES --- */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap');
+
+:root {
+    /* --- Cores da Marca Unilavras (para uso geral na página) --- */
+    --unilavras-cyan: #009DE0;
+    --unilavras-dark-blue: #021D34; 
+    --unilavras-text: #FFFFFF;
+    --danger-red: #E74C3C;
+}
+
+/* ============================================================================
+  ==  CORREÇÃO DE CAMADA (Z-INDEX) E TEMA                                   ==
+  ============================================================================
+  Movemos as variáveis do tema para cá e definimos um z-index para o contêiner
+  do chat, garantindo que ele fique ABAIXO do botão de encerrar.
+*/
+#n8n-chat-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    z-index: 990; /* <--- VALOR MENOR QUE O Z-INDEX DO BOTÃO (1000) */
+
+    /* --- 🎨 TEMA CUSTOMIZADO PARA O CHAT N8N --- */
+    --chat--color-primary: var(--unilavras-cyan);
+    --chat--color-secondary: var(--unilavras-dark-blue);
+    --chat--color-white: #ffffff;
+    --chat--color-light: #f8f9fa;
+    --chat--color-dark: #212529;
+    --chat--spacing: 1.1rem;
+    --chat--border-radius: 24px;
+    --chat--header--background: var(--unilavras-dark-blue);
+    --chat--header--color: var(--unilavras-text);
+    --chat--header--padding: 1.2rem;
+    --chat--header--border-bottom: 1px solid var(--unilavras-cyan);
+    --chat--body--background: var(--chat--color-light);
+    --chat--message--font-size: 1rem;
+    --chat--message-line-height: 1.6;
+    --chat--message--bot--background: var(--chat--color-white);
+    --chat--message--bot--color: var(--chat--color-dark);
+    --chat--message--user--background: var(--unilavras-cyan);
+    --chat--message--user--color: var(--chat--color-white);
+    --chat--textarea--height: 55px;
+    --chat--footer--background: var(--chat--color-white);
+    --chat--footer--border-top: 1px solid #e9ecef;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--unilavras-dark-blue); 
+    color: var(--unilavras-text); 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* --- TELA DE BOAS-VINDAS --- */
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    inset: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 10;
+    background-color: var(--unilavras-dark-blue);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.welcome-container.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+}
+
+.unilavras-logo {
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+.welcome-container h1 {
+    color: var(--unilavras-cyan);
+    font-size: 3.5em;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0 0 10px;
+}
+
+.welcome-container p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin-bottom: 40px;
+    max-width: 500px;
+}
+
+.start-chat-button {
+    background-color: var(--unilavras-cyan);
+    color: var(--unilavras-text);
+    border: none;
+    border-radius: 50px;
+    padding: 15px 40px;
+    font-size: 1.5em;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(0, 157, 224, 0.4);
+    transition: all 0.3s ease;
+}
+
+.start-chat-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 157, 224, 0.6);
+}
+
+/* --- CONTAINER DO CHAT E BOTÃO DE ENCERRAR --- */
+#chat-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+}
+
+.end-session-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000; /* <--- Z-INDEX MAIS ALTO */
+    background-color: var(--danger-red);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+}
+
+.end-session-button.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.end-session-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.end-session-button i {
+    margin-right: 8px;
+}
+
+/* --- AJUSTES FINAIS PARA O CHAT N8N --- */
+#n8n-chat-widget {
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    font-family: 'Nunito', sans-serif !important;
+}
+
+.n8n-chat-message-bubble {
+    border-bottom-right-radius: 4px !important;
+}
+
+.n8n-chat-message--user .n8n-chat-message-bubble {
+    border-bottom-right-radius: 4px !important;
+    border-bottom-left-radius: var(--chat--border-radius) !important;
+}
+
+.n8n-chat-message--bot .n8n-chat-message-bubble {
+    border-bottom-left-radius: 4px !important;
+    border-bottom-right-radius: var(--chat--border-radius) !important;
+}
+
+
+/* --- TELA DE AGRADECIMENTO --- */
+.thank-you-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    inset: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 20;
+    background-color: var(--unilavras-dark-blue);
+    transition: opacity 0.5s ease-in;
+}
+
+.thank-you-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.thank-you-container h2 {
+    color: var(--unilavras-cyan);
+    font-size: 2.8em;
+    font-weight: 800;
+    margin: 10px 0;
+}
+
+.thank-you-container p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.thank-you-container h3 {
+    font-size: 1.5em;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 30px;
+    width: 80%;
+    max-width: 500px;
+}
+
+.tech-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 30px;
+}
+
+.tech-list li {
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.tech-list i {
+    color: var(--unilavras-cyan);
+    font-size: 1.8em;
+}
+
+/* --- GERAL --- */
+.hidden {
+    display: none !important;
+}
+
+/* --- FUNDO ANIMADO (sem alterações) --- */
+.background-shapes { 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; 
+}
+.background-shapes li {
+    position: absolute; display: block; list-style: none;
+    bottom: -150px;
+    background: rgba(0, 157, 224, 0.15);
+    animation: float-up 25s linear infinite;
+}
+.background-shapes li:nth-child(1){left:25%;width:80px;height:80px;animation-delay:0s}
+.background-shapes li:nth-child(2){left:10%;width:20px;height:20px;animation-delay:2s;animation-duration:12s}
+.background-shapes li:nth-child(3){left:70%;width:20px;height:20px;animation-delay:4s}
+.background-shapes li:nth-child(4){left:40%;width:60px;height:60px;animation-delay:0s;animation-duration:18s}
+.background-shapes li:nth-child(5){left:65%;width:20px;height:20px;animation-delay:0s}
+.background-shapes li:nth-child(6){left:75%;width:110px;height:110px;animation-delay:3s}
+.background-shapes li:nth-child(7){left:35%;width:150px;height:150px;animation-delay:7s}
+.background-shapes li:nth-child(8){left:50%;width:25px;height:25px;animation-delay:15s;animation-duration:45s}
+.background-shapes li:nth-child(9){left:20%;width:15px;height:15px;animation-delay:2s;animation-duration:35s}
+.background-shapes li:nth-child(10){left:85%;width:150px;height:150px;animation-delay:0s;animation-duration:11s}
+
+@keyframes float-up {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+    100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; border-radius: 50%; }
+}

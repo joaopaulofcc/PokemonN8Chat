@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokédexBot - Unilavras na Praça</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-shapes">
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    </div>
+
+    <main id="welcome-container" class="welcome-container">
+        <img src="https://i.ibb.co/ccT86Nrc/Logo-Unilavras-Oficial-2019-mono-full-white.png" alt="Logo Unilavras" class="unilavras-logo">
+        <h1>Pokédex Comunitária</h1>
+        <p>Uma experiência interativa com IA do curso de ADS em comemoração aos 60 Anos do Unilavras.</p>
+        <button id="start-chat-button" class="start-chat-button">Iniciar Aventura</button>
+    </main>
+
+    <div id="chat-wrapper" class="hidden">
+        <button id="end-session-button" class="end-session-button">
+            <i class="fas fa-times"></i> Encerrar
+        </button>
+        <div id="n8n-chat-container"></div>
+    </div>
+
+    <div id="thank-you-container" class="thank-you-container hidden">
+        <img src="https://i.ibb.co/ccT86Nrc/Logo-Unilavras-Oficial-2019-mono-full-white.png" alt="Logo Unilavras" class="unilavras-logo">
+        <h2>Obrigado por participar!</h2>
+        <p>Este projeto foi desenvolvido com paixão pelos alunos do curso de <strong>Análise e Desenvolvimento de Sistemas (ADS)</strong> do Unilavras.</p>
+        <p>Quer transformar ideias em realidade e construir o futuro da tecnologia? <strong>Junte-se a nós no curso de ADS!</strong></p>
+        
+        <h3>Tecnologias Utilizadas:</h3>
+        <ul class="tech-list">
+            <li><i class="fab fa-html5"></i> HTML5</li>
+            <li><i class="fab fa-css3-alt"></i> CSS3</li>
+            <li><i class="fab fa-js-square"></i> JavaScript</li>
+            <li><i class="fab fa-node-js"></i> Node.js</li>
+            <li><i class="fas fa-robot"></i> n8n.io</li>
+            <li><i class="fas fa-brain"></i> Google Gemini AI</li>
+        </ul>
+    </div>
+
+    <script src="script.js" type="module"></script>
+</body>
+</html>
